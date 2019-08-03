@@ -281,3 +281,6 @@ application/media/
 .env
 .envs/*
 !.envs/.local/
+
+# SQLite
+db.sqlite3

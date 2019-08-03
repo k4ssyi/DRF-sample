@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    django:
+        build:
+            context: ./docker/django
+            dockerfile: Dockerfile
+        ports:
+            - 8000:8000
+        volumes:
+            - .:/code
+        env_file: .env
+        tty: true
+        command: "/code/docker/django/start-server.sh"
+
+    frontend:
+        build:
+            context: ./docker/vue
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - .:/code
+        env_file: .env
+        tty: true
+        command: "/code/docker/vue/start-server.sh"
