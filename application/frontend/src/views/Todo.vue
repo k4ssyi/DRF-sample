@@ -5,6 +5,7 @@
         <thead>
           <tr>
             <th class="text-left">ID</th>
+            <th class="text-left">著者</th>
             <th class="text-left">タイトル</th>
             <th class="text-left">内容</th>
             <th class="text-left">投稿時間</th>
@@ -13,6 +14,11 @@
         <tbody>
           <tr v-for="todo in todos" :key="todo.id">
             <td>{{ todo.id }}</td>
+            <td>
+              <div v-for="author in todo.author" :key=author.id>
+                {{ author.name }}
+              </div>
+            </td>
             <td>{{ todo.title }}</td>
             <td>{{ todo.content }}</td>
             <td>{{ todo.created_at }}</td>
@@ -36,6 +42,7 @@ export default {
     getApi() {
       axios.get(process.env.VUE_APP_ROOT_API + "todos/").then(response => {
         this.todos = response.data;
+        console.log(this.todos)
       });
     }
   }
